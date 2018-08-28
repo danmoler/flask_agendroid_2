@@ -1,6 +1,35 @@
 # ffs: flask from scratch
 from flask import Flask, render_template
 from data import Articles
+import sqlite3
+
+# Create a DB if it doesnt exist and connect to itself.
+connection = sqlite3.connect('db/ffs_db')
+
+# Get a cursor to execute sql statements
+cursor = connection.cursor()
+
+# Create table users
+sql = '''CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY AUTOINCREMENT, name VARCHAR(100), email VARCHAR(100), username VARCHAR(30), password VARCHAR(100), register_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP)'''
+cursor.execute(sql)
+
+# Insert data into table
+# sql = "INSERT INTO users (name, email, usernme, password, register_date) VALUES ('str1', val1, etc)"
+# cursor.execute(sql)
+
+# Persist data
+# connection.commit()
+
+# Select data from table
+# sql = 'SELECT * FROM users'
+# cursor.execute(sql)
+
+# rows = cursor.fetchall()
+
+# for row in rows:
+#    print(row)
+
+# connection.close()
 
 ffsapp = Flask(__name__)
 
